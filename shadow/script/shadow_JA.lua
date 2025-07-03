@@ -17,7 +17,6 @@ local triadicColors = {}
 local tetradicColors = {}
 local lastColor
 
--- Default values
 local default_lowtemp = 215
 local default_hightemp = 50
 local default_intensity = 40
@@ -25,7 +24,6 @@ local default_peak = 60
 local default_sway = 60
 local default_slots = 7
 
--- Helper functions
 local function lerp(first, second, by)
   return first * (1 - by) + second * by
 end
@@ -82,7 +80,7 @@ local function calculateAdvanced2Colors(baseColor)
   tetradicColors = {}
 
   complementaryColors[1] = baseColor
-  complementaryColors[2] = shiftHue(baseColor, 0.5) -- 180°
+  complementaryColors[2] = shiftHue(baseColor, 0.5)
 
   triadicColors[1] = baseColor
   triadicColors[2] = shiftHue(baseColor, 120/360)
@@ -204,30 +202,30 @@ end
 
 local function showHelp()
   app.alert{
-      title="Help",
+      title="ヘルプ",
       text={
-          "Tool Description:",
-          "- Base: Clicking on a base color changes the generated palette.",
-          "- \"Get\": Updates base colors using current FG/BG and regenerates shades.",
+          "ツール説明:",
+          "- ベース: ベースカラーをクリックするとパレットが生成されます。",
+          "- 「取得」: 現在のFG/BGを使ってベースカラーを更新し、シェードを再生成します。",
           "",
-          "Mouse Actions on any swatch:",
-          "- Left Click: Set the swatch color as FG.",
-          "- Right Click: Set the swatch color as BG.",
-          "- Middle Click: Set the color depending on the last changed (FG or BG) and regenerate.",
+          "スウォッチでのマウス操作:",
+          "- 左クリック: FGカラーとして設定。",
+          "- 右クリック: BGカラーとして設定。",
+          "- 中クリック: 最後に変更したカラーに応じて設定し、再生成します。",
           "",
-          "Advanced Controls:",
-          "- Temp. Dark/Light: Adjust warm/cool hue shifts for dark/light shades.",
-          "- Intensity: Adds a saturation gradient to the shades.",
-          "- Peak: Controls how bright the lightest shades get.",
-          "- Sway: Adjusts how strongly the temperature shifts affect the colors.",
-          "- Slots: Changes the number of generated color swatches.",
+          "高度なコントロール:",
+          "- ダーク温度/ライト温度: 暗い/明るいシェードの暖色/寒色調整。",
+          "- 強度: シェードの彩度グラデーションを追加。",
+          "- ピーク: 最も明るいシェードの明るさ調整。",
+          "- スウェイ: 温度シフトの影響度を調整。",
+          "- スロット: 生成されるスウォッチの数。",
           "",
-          "Color Options (Chromatic): Shows harmonic color combinations (Compl., Triad, Tetrad) to inspire color relationships.",
+          "カラーハーモニー（調和）オプション: 補色、三分割、四分割配色の提案。",
           "",
-          "Auto Pick: If enabled, changes in FG/BG automatically update the palette.",
-          "Advanced: Shows or hides advanced controls.",
+          "自動取得: 有効にすると、FG/BGの変更時に自動的にパレットを更新。",
+          "高度: 高度なコントロールの表示切替。",
           "",
-          "Reset: Returns parameters to their default values."
+          "リセット: パラメータをデフォルトに戻します。"
       }
   }
 end
@@ -257,7 +255,7 @@ local function createDialog()
   lastColor = FGcache
 
   dlg = Dialog {
-      title = "Color Shades",
+      title = "カラーシェード",
       onclose = function()
           app.events:off(fgListenerCode)
           app.events:off(bgListenerCode)
@@ -266,7 +264,7 @@ local function createDialog()
 
   dlg:shades{
       id = "base",
-      label = "Base",
+      label = "ベース",
       colors = {FGcache, BGcache},
       onclick = function(ev)
           lastColor = ev.color
@@ -276,7 +274,7 @@ local function createDialog()
   }
   :button{
       id = "get",
-      text = "Get",
+      text = "取得",
       onclick = function()
         local cacheLastColor = lastColor
         FGcache = app.fgColor
@@ -295,38 +293,38 @@ local function createDialog()
   }
   :shades{
       id = "sha",
-      label = "Shade",
+      label = "シェード",
       onclick = onShadesClick
   }
   :shades{
       id = "lit",
-      label = "Light",
+      label = "ライト",
       onclick = onShadesClick
   }
   :shades{
       id = "sat",
-      label = "Sat.",
+      label = "彩度",
       onclick = onShadesClick
   }
   :shades{
       id = "mix",
-      label = "Mix",
+      label = "ミックス",
       onclick = onShadesClick
   }
   :shades{
       id = "nuance",
-      label = "Nuance",
+      label = "ニュアンス",
       onclick = onShadesClick
   }
   :shades{
       id = "hue",
-      label = "Hue",
+      label = "色相",
       onclick = onShadesClick
   }
   :newrow()
   :slider{
       id = "lowtemp",
-      label = "Temp. Dark",
+      label = "ダーク温度",
       min = 0,
       max = 359.999,
       value = default_lowtemp,
@@ -345,7 +343,7 @@ local function createDialog()
   }
   :slider{
       id = "hightemp",
-      label = "Temp. Light",
+      label = "ライト温度",
       min = 0,
       max = 359.999,
       value = default_hightemp,
@@ -393,7 +391,7 @@ local function createDialog()
   }
   :slider{
       id = "intensity",
-      label = "Intensity",
+      label = "強度",
       min = 1,
       max = 200,
       value = default_intensity,
@@ -404,7 +402,7 @@ local function createDialog()
   }
   :slider{
       id = "peak",
-      label = "Peak",
+      label = "ピーク",
       min = 1,
       max = 100,
       value = default_peak,
@@ -415,7 +413,7 @@ local function createDialog()
   }
   :slider{
       id = "sway",
-      label = "Sway",
+      label = "スウェイ",
       min = 1,
       max = 100,
       value = default_sway,
@@ -426,7 +424,7 @@ local function createDialog()
   }
   :slider{
       id = "slots",
-      label = "Slots",
+      label = "スロット",
       min = 3,
       max = 25,
       value = default_slots,
@@ -440,28 +438,26 @@ local function createDialog()
           updateDialogData()
       end
   }
-
   :newrow()
   :check{
       id = "mode",
-      text = "Auto Pick",
+      text = "自動取得",
       selected = autoPick,
       onclick = function() autoPick = not autoPick end
   }
   :check{
       id = "mode2",
-      text = "Advanced",
+      text = "高度",
       selected = advanced,
       onclick = function()
           advanced = not advanced
           updateDialogData()
       end
   }
-
   :newrow()
   :check{
       id="mode3",
-      text="Color Options",
+      text="カラーハーモニー",
       selected=advanced2,
       onclick=function()
           advanced2 = not advanced2
@@ -469,42 +465,39 @@ local function createDialog()
           updateDialogData()
       end
   }
-
   :newrow()
   :button{
       id = "reset",
-      text = "Reset",
+      text = "リセット",
       onclick = resetValues
   }
   :button{
       id="helpBtn",
       text="?",
-      tooltip="Help",
+      tooltip="ヘルプ",
       onclick=showHelp
   }
-
   :shades{
       id = "comp",
-      label = "Compl.",
+      label = "補色",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
   :shades{
       id = "triad",
-      label = "Triad",
+      label = "三分割",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
   :shades{
       id = "tetrad",
-      label = "Tetrad",
+      label = "四分割",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
-
   dlg:show{wait = false}
 end
 
