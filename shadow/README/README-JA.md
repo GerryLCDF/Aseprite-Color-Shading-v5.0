@@ -1,50 +1,57 @@
-# Aseprite Color Shading v5.0
+# Aseprite カラーシェーディング v5.0
 
-This script for [Aseprite](https://www.aseprite.org/) opens a dynamic color selection window with relevant gradient and hue options, helping you to easily create palettes and shade variations.
+このスクリプトは [Aseprite](https://www.aseprite.org/) 用で、グラデーションや色相オプションを備えた動的なカラーパレットウィンドウを開き、簡単にパレットやシェーディングバリエーションを作成するのに役立ちます。
 
-## Credits and Origins
+## クレジットと起源
 
-This work is based on previous contributions:
+この作品は、以下の以前の貢献に基づいています：
 
-- Version 1.0-2.0 by [Dominick John](https://github.com/dominickjohn/aseprite/tree/master) and [David Capello](https://aseprite.org/).
-- Version 3.0 by [yashar98](https://github.com/yashar98/aseprite/tree/main).
-- Version 3.1 by [Daeyangae](https://github.com/Daeyangae/aseprite).
-- Version 4.0 by [Manuel Hoelzl](https://github.com/hoelzlmanuel/aseprite-color-shading).
+- バージョン 1.0–2.0: [Dominick John](https://github.com/dominickjohn/aseprite/tree/master) と [David Capello](https://aseprite.org/)。
+- バージョン 3.0: [yashar98](https://github.com/yashar98/aseprite/tree/main)。
+- バージョン 3.1: [Daeyangae](https://github.com/Daeyangae/aseprite)。
+- バージョン 4.0: [Manuel Hoelzl](https://github.com/hoelzlmanuel/aseprite-color-shading)。
 
-This version maintains previously introduced functionalities while adding additional improvements.
+このバージョンはこれまで導入された機能を維持しつつ、追加改善を加えています。
 
-## Installation
+## インストール方法
 
-1. Download the script file (e.g. `Color Shading v4.0.lua`).
-2. Open Aseprite and go to **File -> Scripts -> Open Scripts Folder** to open the scripts directory.
-3. Copy the script file into Aseprite’s scripts folder.
-4. Restart Aseprite if necessary.
+1. スクリプトファイルをダウンロードします（例: `Color Shading v4.0.lua`）。
+2. Aseprite を開き、**File -> Scripts -> Open Scripts Folder** を選んでスクリプトディレクトリを開きます。
+3. ダウンロードしたスクリプトファイルをそのフォルダにコピーします。
+4. 必要であれば Aseprite を再起動します。
 
-## Usage
+## 使い方
 
-1. In Aseprite, go to **File -> Scripts -> Color Shading v4.0** to run the script.
-2. A window with different color sections and palette generation options will appear.
+1. Aseprite で **File -> Scripts -> Color Shading v4.0** を選んでスクリプトを実行します。
+2. カラーセクションとパレット生成オプションを含むウィンドウが表示されます。
 
-### Features:
+### 機能:
 
-- **Base:** Clicking on one of the base colors will recalculate the rest of the shades and nuances based on that color.
-- **"Get" Button:** Updates the base colors using the current foreground (FG) and background (BG) colors, and regenerates the shades.
-- **Left Click on a Color:** Sets that color as the FG.
-- **Right Click on a Color:** Sets that color as the BG.
-- **Middle Click on a Color:** Toggles between FG/BG depending on which was last changed (if "auto pick" is enabled), and regenerates all shades based on the new color.
-  
-### Advanced Controls:
+- **Base:** ベースカラーをクリックすると、その色を元に他のシェードやニュアンスが再計算されます。
+- **「取得」ボタン:** 現在の前景色（FG）と背景色（BG）を使ってベースカラーを更新し、シェードを再生成します。
+- **カラーを左クリック:** その色を前景色（FG）として設定します。
+- **カラーを右クリック:** その色を背景色（BG）として設定します。
+- **カラーを中クリック:** 最後に変更した色（FG または BG）を切り替え、すべてのシェードを新しい色に基づいて再生成します（「自動取得」有効時）。
 
-- **Temperature (Dark/Light):** Adjusts warm/cool hue shifts for dark and light shades, respectively.
-- **Intensity:** Adds a saturation gradient to the shade swatches.
-- **Peak:** Adds a lightness gradient to the shades, affecting how much brighter the lighter swatches become.
-- **Sway:** Adjusts how strongly the set temperatures influence the resulting colors.
-- **Slots:** Changes the number of generated color swatches.
+### 高度なコントロール:
 
-## Notes
+- **温度（暗/明）:** 暗いシェードや明るいシェードに対する暖色/寒色のシフトを調整します。
+- **強度:** シェードスウォッチに彩度のグラデーションを追加します。
+- **ピーク:** シェードに明度のグラデーションを追加し、明るいスウォッチの明るさを調整します。
+- **スウェイ:** 設定した温度の色への影響度を調整します。
+- **スロット:** 生成されるスウォッチの数を変更します。
 
-- Make sure you have the latest version of Aseprite for script compatibility.
-- This script is intended for pixel artists and designers who need tools to quickly generate palettes and color gradients.
+## 注意
 
-  <img width="363" alt="Color Shading v4 0" src="shadow/example.png">
+- スクリプト互換性のため、Aseprite の最新版を使用してください。
+- このスクリプトは、迅速にパレットやグラデーションを作成したいピクセルアーティストやデザイナー向けです。
 
+<img width="363" alt="Color Shading v4 0" src="shadow/example.png">
+
+## 🌐 他の言語
+
+- 🇬🇧 [English Version](README.md)
+- 🇫🇷 [French Version](shadow/README/README-FR.md)
+- 🇪🇸 [Spanish Version](shadow/README/README-ES.md)
+- 🇯🇵 [Japanese Version](shadow/README/README-JA.md)
+- 🇵🇹 [Portuguese Version](shadow/README/README-PT.md)
