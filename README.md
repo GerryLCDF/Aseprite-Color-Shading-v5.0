@@ -47,6 +47,8 @@ This version maintains previously introduced functionalities while adding additi
 - This script is intended for pixel artists and designers who need tools to quickly generate palettes and color gradients.
 
 <img width="363" alt="Color Shading v5.0" src="shadow/img/op1EN.png">
+<img width="363" alt="Color Shading v5.0" src="shadow/img/op3EN.png">
+<img width="363" alt="Color Shading v5.0" src="shadow/img/op2EN.png">
 
 ## 🌐 Other languages
 
