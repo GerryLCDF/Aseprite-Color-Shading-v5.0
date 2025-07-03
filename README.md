@@ -48,3 +48,12 @@ This version maintains previously introduced functionalities while adding additi
 
   <img width="363" alt="Color Shading v4 0" src="shadow/example.png">
 
+
+  ## Other languages
+
+- 🇫🇷 [French Version](shadow/README/README-FR.md)
+- 🇪🇸 [Spanish Version](shadow/README/README-ES.md)
+- 🇯🇵 [Japanese Version](shadow/README/README-JA.md)
+- 🇵🇹 [Portuguese Version](shadow/README/README-PT.md)
+
+
