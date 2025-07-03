@@ -46,7 +46,7 @@ This version maintains previously introduced functionalities while adding additi
 - Make sure you have the latest version of Aseprite for script compatibility.
 - This script is intended for pixel artists and designers who need tools to quickly generate palettes and color gradients.
 
-<img width="363" alt="Color Shading v5.0" src="shadow/img/op1EN">
+<img width="363" alt="Color Shading v5.0" src="shadow/img/op1EN.png">
 
 ## 🌐 Other languages
 
