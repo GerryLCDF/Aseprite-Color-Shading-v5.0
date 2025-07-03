@@ -6,7 +6,7 @@ This script for [Aseprite](https://www.aseprite.org/) opens a dynamic color sele
 
 This work is based on previous contributions:
 
-- Version 1.0-2.0 by [Dominick John](https://github.com/dominickjohn/aseprite/tree/master) and [David Capello](https://aseprite.org/).
+- Version 1.0–2.0 by [Dominick John](https://github.com/dominickjohn/aseprite/tree/master) and [David Capello](https://aseprite.org/).
 - Version 3.0 by [yashar98](https://github.com/yashar98/aseprite/tree/main).
 - Version 3.1 by [Daeyangae](https://github.com/Daeyangae/aseprite).
 - Version 4.0 by [Manuel Hoelzl](https://github.com/hoelzlmanuel/aseprite-color-shading).
@@ -46,5 +46,11 @@ This version maintains previously introduced functionalities while adding additi
 - Make sure you have the latest version of Aseprite for script compatibility.
 - This script is intended for pixel artists and designers who need tools to quickly generate palettes and color gradients.
 
-  <img width="363" alt="Color Shading v4 0" src="shadow/example.png">
+<img width="363" alt="Color Shading v5.0" src="shadow/img/op1EN.png">
 
+## 🌐 Other languages
+
+- 🇫🇷 [French Version](shadow/README/README-FR.md)
+- 🇪🇸 [Spanish Version](shadow/README/README-ES.md)
+- 🇯🇵 [Japanese Version](shadow/README/README-JA.md)
+- 🇵🇹 [Portuguese Version](shadow/README/README-PT.md)
