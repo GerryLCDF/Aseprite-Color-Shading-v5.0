@@ -47,7 +47,8 @@ Esta versión mantiene las funcionalidades introducidas anteriormente mientras a
 - Este script está pensado para artistas pixel y diseñadores que necesitan herramientas para generar paletas y gradientes de color rápidamente.
 
 <img width="363" alt="Color Shading v5.0" src="../img/op1ES.png">
-
+<img width="363" alt="Color Shading v5.0" src="../img/op2ES.png">
+<img width="363" alt="Color Shading v5.0" src="../img/op3ES.png">
 ## 🌐 Otros idiomas
 
 - 🇬🇧 [Versión en inglés](../../README.md)
