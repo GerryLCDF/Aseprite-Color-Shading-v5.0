@@ -17,6 +17,7 @@ local triadicColors = {}
 local tetradicColors = {}
 local lastColor
 
+-- Valores por defecto
 local default_lowtemp = 215
 local default_hightemp = 50
 local default_intensity = 40
@@ -24,6 +25,7 @@ local default_peak = 60
 local default_sway = 60
 local default_slots = 7
 
+-- Funciones auxiliares
 local function lerp(first, second, by)
   return first * (1 - by) + second * by
 end
@@ -80,7 +82,7 @@ local function calculateAdvanced2Colors(baseColor)
   tetradicColors = {}
 
   complementaryColors[1] = baseColor
-  complementaryColors[2] = shiftHue(baseColor, 0.5)
+  complementaryColors[2] = shiftHue(baseColor, 0.5) -- 180°
 
   triadicColors[1] = baseColor
   triadicColors[2] = shiftHue(baseColor, 120/360)
@@ -132,7 +134,7 @@ local function calculateColors(baseColor)
       lighthessColors[i] = shiftLightness(baseColor, 0.4 * factor * neg)
       saturationColors[i] = shiftSaturation(baseColor, 0.75 * factor * neg)
       nuanceColors[i] = shiftHue(baseColor, ((slots + 1) / 2 - i) * 1 /
-                                    (slots + 1) * 2 / (slots + 1))
+                                          (slots + 1) * 2 / (slots + 1))
     end
   end
 
@@ -202,30 +204,30 @@ end
 
 local function showHelp()
   app.alert{
-      title="ヘルプ",
+      title="Ayuda",
       text={
-          "ツール説明:",
-          "- ベース: ベースカラーをクリックするとパレットが生成されます。",
-          "- 「取得」: 現在のFG/BGを使ってベースカラーを更新し、シェードを再生成します。",
+          "Descripción de la Herramienta:",
+          "- Base: Al hacer clic en un color base, cambia la paleta generada.",
+          "- \"Tomar\": Actualiza los colores base usando el Frente/Fondo actual y regenera las sombras.",
           "",
-          "スウォッチでのマウス操作:",
-          "- 左クリック: FGカラーとして設定。",
-          "- 右クリック: BGカラーとして設定。",
-          "- 中クリック: 最後に変更したカラーに応じて設定し、再生成します。",
+          "Acciones del Mouse en cualquier muestra:",
+          "- Clic Izquierdo: Establece el color de la muestra como Frente (FG).",
+          "- Clic Derecho: Establece el color de la muestra como Fondo (BG).",
+          "- Clic Medio: Establece el color dependiendo del último cambiado (Frente o Fondo) y regenera.",
           "",
-          "高度なコントロール:",
-          "- ダーク温度/ライト温度: 暗い/明るいシェードの暖色/寒色調整。",
-          "- 強度: シェードの彩度グラデーションを追加。",
-          "- ピーク: 最も明るいシェードの明るさ調整。",
-          "- スウェイ: 温度シフトの影響度を調整。",
-          "- スロット: 生成されるスウォッチの数。",
+          "Controles Avanzados:",
+          "- Temp. Oscura/Clara: Ajusta cambios de tono cálido/frío para sombras oscuras/claras.",
+          "- Intensidad: Añade un gradiente de saturación a las sombras.",
+          "- Pico: Controla qué tan brillantes llegan a ser los tonos más claros.",
+          "- Oscilación: Ajusta qué tan fuerte afectan los cambios de temperatura a los colores.",
+          "- Niveles: Cambia el número de muestras de color generadas.",
           "",
-          "カラーハーモニー（調和）オプション: 補色、三分割、四分割配色の提案。",
+          "Opciones de Color (Cromáticas): Muestra combinaciones armónicas (Compl., Triada, Tétrada) para inspirar relaciones de color.",
           "",
-          "自動取得: 有効にすると、FG/BGの変更時に自動的にパレットを更新。",
-          "高度: 高度なコントロールの表示切替。",
+          "Auto-Captura: Si está activado, los cambios en Frente/Fondo actualizan automáticamente la paleta.",
+          "Avanzado: Muestra u oculta los controles avanzados.",
           "",
-          "リセット: パラメータをデフォルトに戻します。"
+          "Restablecer: Regresa los parámetros a sus valores por defecto."
       }
   }
 end
@@ -255,7 +257,7 @@ local function createDialog()
   lastColor = FGcache
 
   dlg = Dialog {
-      title = "カラーシェード",
+      title = "Sombras de Color",
       onclose = function()
           app.events:off(fgListenerCode)
           app.events:off(bgListenerCode)
@@ -264,7 +266,7 @@ local function createDialog()
 
   dlg:shades{
       id = "base",
-      label = "ベース",
+      label = "Base",
       colors = {FGcache, BGcache},
       onclick = function(ev)
           lastColor = ev.color
@@ -274,7 +276,7 @@ local function createDialog()
   }
   :button{
       id = "get",
-      text = "取得",
+      text = "Tomar",
       onclick = function()
         local cacheLastColor = lastColor
         FGcache = app.fgColor
@@ -293,38 +295,38 @@ local function createDialog()
   }
   :shades{
       id = "sha",
-      label = "シェード",
+      label = "Sombra",
       onclick = onShadesClick
   }
   :shades{
       id = "lit",
-      label = "ライト",
+      label = "Luz",
       onclick = onShadesClick
   }
   :shades{
       id = "sat",
-      label = "彩度",
+      label = "Sat.",
       onclick = onShadesClick
   }
   :shades{
       id = "mix",
-      label = "ミックス",
+      label = "Mezcla",
       onclick = onShadesClick
   }
   :shades{
       id = "nuance",
-      label = "ニュアンス",
+      label = "Matiz",
       onclick = onShadesClick
   }
   :shades{
       id = "hue",
-      label = "色相",
+      label = "Tono",
       onclick = onShadesClick
   }
   :newrow()
   :slider{
       id = "lowtemp",
-      label = "ダーク温度",
+      label = "Temp. Oscura",
       min = 0,
       max = 359.999,
       value = default_lowtemp,
@@ -343,7 +345,7 @@ local function createDialog()
   }
   :slider{
       id = "hightemp",
-      label = "ライト温度",
+      label = "Temp. Clara",
       min = 0,
       max = 359.999,
       value = default_hightemp,
@@ -391,7 +393,7 @@ local function createDialog()
   }
   :slider{
       id = "intensity",
-      label = "強度",
+      label = "Intensidad",
       min = 1,
       max = 200,
       value = default_intensity,
@@ -402,7 +404,7 @@ local function createDialog()
   }
   :slider{
       id = "peak",
-      label = "ピーク",
+      label = "Pico",
       min = 1,
       max = 100,
       value = default_peak,
@@ -413,7 +415,7 @@ local function createDialog()
   }
   :slider{
       id = "sway",
-      label = "スウェイ",
+      label = "Oscilación",
       min = 1,
       max = 100,
       value = default_sway,
@@ -424,7 +426,7 @@ local function createDialog()
   }
   :slider{
       id = "slots",
-      label = "スロット",
+      label = "Niveles",
       min = 3,
       max = 25,
       value = default_slots,
@@ -438,26 +440,28 @@ local function createDialog()
           updateDialogData()
       end
   }
+
   :newrow()
   :check{
       id = "mode",
-      text = "自動取得",
+      text = "Auto-Captura",
       selected = autoPick,
       onclick = function() autoPick = not autoPick end
   }
   :check{
       id = "mode2",
-      text = "高度",
+      text = "Avanzado",
       selected = advanced,
       onclick = function()
           advanced = not advanced
           updateDialogData()
       end
   }
+
   :newrow()
   :check{
       id="mode3",
-      text="カラーハーモニー",
+      text="Armonías",
       selected=advanced2,
       onclick=function()
           advanced2 = not advanced2
@@ -465,39 +469,42 @@ local function createDialog()
           updateDialogData()
       end
   }
+
   :newrow()
   :button{
       id = "reset",
-      text = "リセット",
+      text = "Restablecer",
       onclick = resetValues
   }
   :button{
       id="helpBtn",
       text="?",
-      tooltip="ヘルプ",
+      tooltip="Ayuda",
       onclick=showHelp
   }
+
   :shades{
       id = "comp",
-      label = "補色",
+      label = "Compl.",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
   :shades{
       id = "triad",
-      label = "三分割",
+      label = "Triada",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
   :shades{
       id = "tetrad",
-      label = "四分割",
+      label = "Tétrada",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
+
   dlg:show{wait = false}
 end
 
