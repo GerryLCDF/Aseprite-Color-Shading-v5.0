@@ -17,7 +17,7 @@ local triadicColors = {}
 local tetradicColors = {}
 local lastColor
 
--- Default values
+-- Valeurs par défaut
 local default_lowtemp = 215
 local default_hightemp = 50
 local default_intensity = 40
@@ -25,7 +25,7 @@ local default_peak = 60
 local default_sway = 60
 local default_slots = 7
 
--- Helper functions
+-- Fonctions auxiliaires
 local function lerp(first, second, by)
   return first * (1 - by) + second * by
 end
@@ -134,7 +134,7 @@ local function calculateColors(baseColor)
       lighthessColors[i] = shiftLightness(baseColor, 0.4 * factor * neg)
       saturationColors[i] = shiftSaturation(baseColor, 0.75 * factor * neg)
       nuanceColors[i] = shiftHue(baseColor, ((slots + 1) / 2 - i) * 1 /
-                                    (slots + 1) * 2 / (slots + 1))
+                                          (slots + 1) * 2 / (slots + 1))
     end
   end
 
@@ -204,30 +204,30 @@ end
 
 local function showHelp()
   app.alert{
-      title="Help",
+      title="Aide",
       text={
-          "Tool Description:",
-          "- Base: Clicking on a base color changes the generated palette.",
-          "- \"Get\": Updates base colors using current FG/BG and regenerates shades.",
+          "Description de l'outil :",
+          "- Base : Cliquer sur une couleur de base change la palette générée.",
+          "- \"Obtenir\" : Met à jour les couleurs de base avec le premier plan/arrière-plan actuel.",
           "",
-          "Mouse Actions on any swatch:",
-          "- Left Click: Set the swatch color as FG.",
-          "- Right Click: Set the swatch color as BG.",
-          "- Middle Click: Set the color depending on the last changed (FG or BG) and regenerate.",
+          "Actions de la Souris sur un échantillon :",
+          "- Clic Gauche : Définit la couleur comme Premier plan (FG).",
+          "- Clic Droit : Définit la couleur comme Arrière-plan (BG).",
+          "- Clic Milieu : Définit la couleur selon le dernier changement (FG ou BG) et régénère.",
           "",
-          "Advanced Controls:",
-          "- Temp. Dark/Light: Adjust warm/cool hue shifts for dark/light shades.",
-          "- Intensity: Adds a saturation gradient to the shades.",
-          "- Peak: Controls how bright the lightest shades get.",
-          "- Sway: Adjusts how strongly the temperature shifts affect the colors.",
-          "- Slots: Changes the number of generated color swatches.",
+          "Contrôles Avancés :",
+          "- Temp. Sombre/Claire : Ajuste les teintes chaudes/froides pour les ombres.",
+          "- Intensité : Ajoute un gradient de saturation aux nuances.",
+          "- Pic : Contrôle la luminosité maximale des teintes claires.",
+          "- Oscillation : Ajuste l'influence des changements de température sur les couleurs.",
+          "- Niveaux : Change le nombre d'échantillons de couleur générés.",
           "",
-          "Color Options (Chromatic): Shows harmonic color combinations (Compl., Triad, Tetrad) to inspire color relationships.",
+          "Harmonies : Affiche des combinaisons harmoniques (Compl., Triade, Tétrade).",
           "",
-          "Auto Pick: If enabled, changes in FG/BG automatically update the palette.",
-          "Advanced: Shows or hides advanced controls.",
+          "Sélection Auto : Si activé, les changements FG/BG mettent à jour la palette.",
+          "Avancé : Affiche ou masque les contrôles avancés.",
           "",
-          "Reset: Returns parameters to their default values."
+          "Réinitialiser : Retourne les paramètres aux valeurs par défaut."
       }
   }
 end
@@ -257,7 +257,7 @@ local function createDialog()
   lastColor = FGcache
 
   dlg = Dialog {
-      title = "Color Shades",
+      title = "Nuances de Couleur",
       onclose = function()
           app.events:off(fgListenerCode)
           app.events:off(bgListenerCode)
@@ -276,7 +276,7 @@ local function createDialog()
   }
   :button{
       id = "get",
-      text = "Get",
+      text = "Obtenir",
       onclick = function()
         local cacheLastColor = lastColor
         FGcache = app.fgColor
@@ -295,12 +295,12 @@ local function createDialog()
   }
   :shades{
       id = "sha",
-      label = "Shade",
+      label = "Ombre",
       onclick = onShadesClick
   }
   :shades{
       id = "lit",
-      label = "Light",
+      label = "Lumière",
       onclick = onShadesClick
   }
   :shades{
@@ -310,7 +310,7 @@ local function createDialog()
   }
   :shades{
       id = "mix",
-      label = "Mix",
+      label = "Mélange",
       onclick = onShadesClick
   }
   :shades{
@@ -320,13 +320,13 @@ local function createDialog()
   }
   :shades{
       id = "hue",
-      label = "Hue",
+      label = "Teinte",
       onclick = onShadesClick
   }
   :newrow()
   :slider{
       id = "lowtemp",
-      label = "Temp. Dark",
+      label = "Temp. Sombre",
       min = 0,
       max = 359.999,
       value = default_lowtemp,
@@ -345,7 +345,7 @@ local function createDialog()
   }
   :slider{
       id = "hightemp",
-      label = "Temp. Light",
+      label = "Temp. Claire",
       min = 0,
       max = 359.999,
       value = default_hightemp,
@@ -393,7 +393,7 @@ local function createDialog()
   }
   :slider{
       id = "intensity",
-      label = "Intensity",
+      label = "Intensité",
       min = 1,
       max = 200,
       value = default_intensity,
@@ -404,7 +404,7 @@ local function createDialog()
   }
   :slider{
       id = "peak",
-      label = "Peak",
+      label = "Pic",
       min = 1,
       max = 100,
       value = default_peak,
@@ -415,7 +415,7 @@ local function createDialog()
   }
   :slider{
       id = "sway",
-      label = "Sway",
+      label = "Oscillation",
       min = 1,
       max = 100,
       value = default_sway,
@@ -426,7 +426,7 @@ local function createDialog()
   }
   :slider{
       id = "slots",
-      label = "Slots",
+      label = "Niveaux",
       min = 3,
       max = 25,
       value = default_slots,
@@ -444,13 +444,13 @@ local function createDialog()
   :newrow()
   :check{
       id = "mode",
-      text = "Auto Pick",
+      text = "Sélection Auto",
       selected = autoPick,
       onclick = function() autoPick = not autoPick end
   }
   :check{
       id = "mode2",
-      text = "Advanced",
+      text = "Avancé",
       selected = advanced,
       onclick = function()
           advanced = not advanced
@@ -461,7 +461,7 @@ local function createDialog()
   :newrow()
   :check{
       id="mode3",
-      text="Color Options",
+      text="Harmonies",
       selected=advanced2,
       onclick=function()
           advanced2 = not advanced2
@@ -473,13 +473,13 @@ local function createDialog()
   :newrow()
   :button{
       id = "reset",
-      text = "Reset",
+      text = "Réinitialiser",
       onclick = resetValues
   }
   :button{
       id="helpBtn",
       text="?",
-      tooltip="Help",
+      tooltip="Aide",
       onclick=showHelp
   }
 
@@ -492,14 +492,14 @@ local function createDialog()
   }
   :shades{
       id = "triad",
-      label = "Triad",
+      label = "Triade",
       colors = {},
       visible = false,
       onclick = onShadesClick
   }
   :shades{
       id = "tetrad",
-      label = "Tetrad",
+      label = "Tétrade",
       colors = {},
       visible = false,
       onclick = onShadesClick
